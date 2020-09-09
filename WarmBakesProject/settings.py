@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     # Personal Applications
     'customers',
@@ -74,6 +78,35 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    #`allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
+# User will have to login through username or email
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+# User must provide a valid email address when registering
+ACCOUNT_EMAIL_REQUIRED = True
+# User must verify the email address before they can sign in
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+# User has to  type in their email twice to prevent any spelling errors
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+# Minimum length of username
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+# Determines the URL to the login page
+LOGIN_URL = 'login/'
+# Controls the page where Django will redirect to upon successful login
+LOGIN_REDIRECT_URL = '/success'
+# Simulation of django sign-up confirmation
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 
 WSGI_APPLICATION = 'WarmBakesProject.wsgi.application'
 
