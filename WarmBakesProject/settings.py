@@ -162,6 +162,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
 CLOUDINARY = {
     'cloud_name':os.environ.get("CLOUDINARY_CLOUD_NAME"),
     'api_key':os.environ.get("CLOUDINARY_API_KEY"),
