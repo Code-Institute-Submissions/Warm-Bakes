@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
 
     # Personal Applications
     'customers',
@@ -166,3 +167,5 @@ CLOUDINARY = {
     'api_key':os.environ.get("CLOUDINARY_API_KEY"),
     'api_secret':os.environ.get("CLOUDINARY_API_SECRET"),
 }
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
