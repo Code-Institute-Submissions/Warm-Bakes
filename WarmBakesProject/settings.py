@@ -68,7 +68,8 @@ ROOT_URLCONF = 'WarmBakesProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates'),
+                 os.path.join(BASE_DIR,'templates','allauth')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,7 +108,6 @@ LOGIN_URL = 'login/'
 LOGIN_REDIRECT_URL = '/success'
 # Simulation of django sign-up confirmation
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 
 
 WSGI_APPLICATION = 'WarmBakesProject.wsgi.application'
