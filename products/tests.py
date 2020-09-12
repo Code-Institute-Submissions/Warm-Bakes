@@ -14,6 +14,27 @@ class TestProductsViews(TestCase):
         self.assertEqual(response.status_code,200)
         self.assertTemplateUsed(response,'products/products_inventory.template.html')
 
+    def test_get_show_product_detail(self):
+        # Create the model instances required for the relationships
+        new_category = Category(name="Solid Cakes")
+        new_category.save()
+        
+        raw_data = {
+            "name": "Fairy Cake",
+            "price": 3000,
+            "category":new_category,
+            "description": "Great Cake!",
+            "sizes": "S"
+        }
+        #Pass the dictionary as named parameters to a function call
+        new_product = Product(**raw_data)
+        new_product.save()
+
+        #Assert route is rendered correctly and with the correct template
+        response = self.client.get(f'/products/detail/{new_product.id}')
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response,'products/show_product_detail.template.html')
+
 
 class TestCategoryForm(TestCase):
     def test_can_create_category(self):
