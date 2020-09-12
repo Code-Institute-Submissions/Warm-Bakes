@@ -1,5 +1,5 @@
 from django.db import models
-
+from cloudinary.models import CloudinaryField
 # Create your models here.
 
 class Difficulty(models.Model):
@@ -14,6 +14,7 @@ class Lesson(models.Model):
     description = models.TextField(blank=False)
     average_class_size = models.PositiveIntegerField(blank=False)
     price = models.PositiveIntegerField(blank=False)
+    image = CloudinaryField(blank=True,null=True)
 
 
     def __str__(self):
