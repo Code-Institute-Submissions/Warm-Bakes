@@ -5,12 +5,9 @@ from .models import Product, Category
 # Create your views here.
 
 def show_all_products(request):
-    return render(request,'products/show_all_products.template.html')
-
-def show_product_detail(request, product_id):
-    product_being_viewed = get_object_or_404(Product,pk=product_id)
-    return render(request,'products/show_product_detail.template.html',{
-        'product':product_being_viewed
+    all_products = Product.objects.all()
+    return render(request,'products/show_all_products.template.html',{
+        'products':all_products
     })
 
 def products_inventory(request):
@@ -18,9 +15,9 @@ def products_inventory(request):
         category_form = CategoryForm(request.POST)
         if category_form.is_valid():
             category_form.save()
-            return redirect(products_inventory)
+            return redirect(reverse(products_inventory))
         else:
-            return redirect(products_inventory)
+            return redirect(reverse(products_inventory))
     else:
         category = Category.objects.all()
         products = Product.objects.all()
@@ -83,3 +80,10 @@ def delete_product(request,product_id):
         return render(request,'products/delete_product.template.html',{
             'product':product_to_delete
         })
+
+
+def show_product_detail(request, product_id):
+    product_being_viewed = get_object_or_404(Product,pk=product_id)
+    return render(request,'products/show_product_detail.template.html',{
+        'product': product_being_viewed
+    })
