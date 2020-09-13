@@ -2,7 +2,7 @@ from django.urls import path
 import lessons.views
 
 urlpatterns = [
-    path('', lessons.views.show_all_classes),
+    path('', lessons.views.show_all_classes,name="show_all_lessons_route"),
     path('database/',lessons.views.lessons_database, name="lessons_database_route"),
     path('difficulty/delete/<difficulty_id>',lessons.views.delete_difficulty,name="delete_difficulty_route"),
     path('create/',lessons.views.create_lesson,name="create_lesson_route"),

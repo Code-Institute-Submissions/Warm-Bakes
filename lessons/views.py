@@ -1,15 +1,21 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404
 from .models import Difficulty,Lesson
 from .forms import DifficultyForm, LessonForm
+from django.contrib import messages
 
 def show_all_classes(request):
-    return render(request,'lessons/show_all_classes.template.html')
+    all_lessons = Lesson.objects.all()
+    return render(request,'lessons/show_all_classes.template.html',{
+        'lessons':all_lessons
+    })
 
 def lessons_database(request):
     if request.method =="POST":
         difficulty_form = DifficultyForm(request.POST)
         if difficulty_form.is_valid():
             difficulty_form.save()
+            messages.success(request,
+            f"New Difficulty {difficulty_form.cleaned_data['name']} has been created")
             return redirect(reverse(lessons_database))
         else:
             return redirect(reverse(lessons_database))
@@ -26,6 +32,8 @@ def lessons_database(request):
 def delete_difficulty(request,difficulty_id):
     difficulty_to_delete = get_object_or_404(Difficulty,pk=difficulty_id)
     difficulty_to_delete.delete()
+    messages.success(request,
+    f"Difficulty {difficulty_to_delete.name} has been deleted")
     return redirect(lessons_database)
 
 
@@ -35,6 +43,8 @@ def create_lesson(request):
         # Validate form fields
         if lesson_form.is_valid():
             lesson_form.save()
+            messages.success(request,
+            f"New Lesson {lesson_form.cleaned_data['name']} has been created")
             return redirect(lessons_database)
         else:
             return render(request,'lessons/create_lesson.template.html',{
@@ -55,12 +65,13 @@ def update_lesson(request,lesson_id):
 
         if lesson_form.is_valid():
             lesson_form.save()
+            messages.success(request,
+            f"Lesson {lesson_form.cleaned_data['name']} has been updated")
             return redirect(lessons_database)
         else:
             return render(request, 'lessons/update_lesson.template.html',{
                 "form": lesson_form
             })
-
     else:
         lesson_form = LessonForm(instance=lesson_to_update)
         return render(request,'lessons/update_lesson.template.html',{
@@ -71,6 +82,8 @@ def delete_lesson(request,lesson_id):
     lesson_to_delete = get_object_or_404(Lesson,pk=lesson_id)
     if request.method =="POST":
         lesson_to_delete.delete()
+        messages.success(request,
+        f"Lesson {lesson_to_delete.name} has been deleted")
         return redirect(lessons_database)
     else:
         return render(request,'lessons/delete_lesson.template.html',{
