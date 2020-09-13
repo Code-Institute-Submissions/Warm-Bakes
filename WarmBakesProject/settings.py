@@ -103,7 +103,7 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 # Minimum length of username
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 # Determines the URL to the login page
-LOGIN_URL = 'login/'
+LOGIN_URL = '/accounts/login/'
 # Controls the page where Django will redirect to upon successful login
 LOGIN_REDIRECT_URL = '/success'
 # Simulation of django sign-up confirmation
