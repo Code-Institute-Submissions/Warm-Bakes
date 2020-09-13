@@ -1,0 +1,21 @@
+{% extends 'base.template.html' %}
+
+{% block content %}
+<h1>Lesson Details</h1>
+
+<ul class="list-group-shadow">
+        <li class="list-group-item">
+            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                <div class="media-body order-2 order-lg-1">
+                  <h5 class="mt-0 font-weight-bold mb-2">{{lesson.name}}</h5>
+                  <p class="font-weight-bold mb-0 small">{{lesson.description}}</p>
+                  <div class="d-flex align-items-center justify-content-between mt-1">
+                    <h6 class="font-weight-bold my-2">{{lesson.category}}</h6>
+                    <h6 class="font-weight-bold my-2">{{lesson.price}}</h6>
+                  </div>
+                </div>
+                <div alt="product-image" width="200" class="ml-lg-5 order-1 order-lg-2">{{lesson.image}}</div>
+              </div>
+        </li>
+</ul>
+{% endblock %}
