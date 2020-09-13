@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404,HttpResponse
 from .forms import CategoryForm, ProductForm
 from .models import Product, Category
-
+from django.contrib import messages
 # Create your views here.
 
 def show_all_products(request):
@@ -15,6 +15,7 @@ def products_inventory(request):
         category_form = CategoryForm(request.POST)
         if category_form.is_valid():
             category_form.save()
+            messages.success(request,f"New Category {category_form.cleaned_data['name']} has been created")
             return redirect(reverse(products_inventory))
         else:
             return redirect(reverse(products_inventory))
@@ -31,6 +32,7 @@ def products_inventory(request):
 def delete_category(request,category_id):
     category_to_delete = get_object_or_404(Category,pk=category_id)
     category_to_delete.delete()
+    messages.success(request,f"Category {category_to_delete.name} has been deleted")
     return redirect(products_inventory)
 
 def create_product(request):
@@ -39,6 +41,7 @@ def create_product(request):
         # Validate form fields
         if product_form.is_valid():
             product_form.save()
+            messages.success(request,f"New Product {product_form.cleaned_data['name']} has been created")
             return redirect(products_inventory)
         else:
             return render(request,'products/create_product.template.html',{
@@ -59,6 +62,7 @@ def update_product(request,product_id):
 
         if product_form.is_valid():
             product_form.save()
+            messages.success(request,f"Product {product_form.cleaned_data['name']} has been updated")
             return redirect(products_inventory)
         else:
             return render(request, 'products/update_product.template.html',{
@@ -75,6 +79,7 @@ def delete_product(request,product_id):
     product_to_delete = get_object_or_404(Product,pk=product_id)
     if request.method =="POST":
         product_to_delete.delete()
+        messages.success(request,f"Product {product_to_delete.name} has been deleted")
         return redirect(products_inventory)
     else:
         return render(request,'products/delete_product.template.html',{
