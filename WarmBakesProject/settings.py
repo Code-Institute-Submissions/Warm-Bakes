@@ -108,7 +108,7 @@ ACCOUNT_FORMS = {'signup':'customers.forms.CustomizedSignUpForm'}
 # Determines the URL to the login page
 LOGIN_URL = '/accounts/login/'
 # Controls the page where Django will redirect to upon successful login
-LOGIN_REDIRECT_URL = '/success'
+LOGIN_REDIRECT_URL = "/"
 # Simulation of django sign-up confirmation
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -176,3 +176,5 @@ CLOUDINARY = {
 }
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
