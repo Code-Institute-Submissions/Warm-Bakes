@@ -4,10 +4,10 @@
 <h1>My Profile</h1>
 
 <h5>Details</h5>
-{{profile.username}}
-{{profile.email}}
+{{profile.user.username}}
+{{profile.user.email}}
 {{profile.contact_number}}
 {{profile.address}}
 {{profile.postal_code}}
-
+<a href ="{% url 'update_profile_page_route'%}">Edit Profile</a>
 {% endblock %}
