@@ -19,3 +19,8 @@ class CustomizedSignUpForm(SignupForm):
         customer.save()
 
         return user 
+
+class CustomerProfileForm(forms.ModelForm):
+    class Meta:
+        model = Customer
+        fields = ('contact_number','address','postal_code')

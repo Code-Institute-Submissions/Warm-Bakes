@@ -1,0 +1,13 @@
+{% extends 'base.template.html' %}
+
+{% block content %}
+<h1>My Profile</h1>
+
+<h5>Details</h5>
+{{profile.username}}
+{{profile.email}}
+{{profile.contact_number}}
+{{profile.address}}
+{{profile.postal_code}}
+
+{% endblock %}
