@@ -22,5 +22,6 @@ urlpatterns = [
     path('lessons/',include('lessons.urls')),
     path('',include('home.urls')),
     path('accounts/',include('allauth.urls')),
-    path('customers/',include('customers.urls'))
+    path('customers/',include('customers.urls')),
+    path('ratings/',include('star_ratings.urls', namespace='ratings')),
 ]
