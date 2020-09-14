@@ -23,5 +23,5 @@ urlpatterns = [
     path('',include('home.urls')),
     path('accounts/',include('allauth.urls')),
     path('customers/',include('customers.urls')),
-    path('ratings/',include('star_ratings.urls', namespace='ratings')),
+    path('reviews/',include('reviews.urls'))
 ]
