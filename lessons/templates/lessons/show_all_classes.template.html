@@ -5,7 +5,7 @@
 
 <ul class="list-group-shadow">
     {% for lesson in lessons %}
-        <li class="list-group-item">
+        <li class="list-group-item" onclick="window.location.href='{% url 'show_lesson_details_route' lesson_id=lesson.id %}'">
             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                 <div class="media-body order-2 order-lg-1">
                   <h5 class="mt-0 font-weight-bold mb-2">{{lesson.name}}</h5>
