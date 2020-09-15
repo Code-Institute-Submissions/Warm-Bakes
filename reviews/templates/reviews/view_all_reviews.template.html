@@ -1,0 +1,54 @@
+{% extends 'base.template.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>My Reviews</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="product-reviews">  
+                <h5>All Product Reviews</h5>
+                <ul class="list-group-shadow">
+                    {% for each_review in product_reviews %}
+                        <li class="list-group-item">
+                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                                <div class="media-body order-2 order-lg-1">
+                                <h5 class="mt-0 font-weight-bold mb-2">{{each_review.content}}</h5>
+                                <p class="font-weight-bold mb-0 small">{{each_review.ratings}}</p>
+                                <div class="d-flex align-items-center justify-content-between mt-1">
+                                    <h6 class="font-weight-bold my-2">{{each_review.buyer}}</h6>
+                                    <h6 class="font-weight-bold my-2">{{each_review.date_posted}}</h6>
+                                    <h6 class="font-weight-bold my-2">{{each_review.product_bought}}</h6>
+                                </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="lesson-reviews">
+                <h5>All Lesson Reviews</h5>
+                <ul class="list-group-shadow">
+                    {% for each_review in lesson_reviews %}
+                        <li class="list-group-item">
+                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                                <div class="media-body order-2 order-lg-1">
+                                <h5 class="mt-0 font-weight-bold mb-2">{{each_review.content}}</h5>
+                                <p class="font-weight-bold mb-0 small">{{each_review.ratings}}</p>
+                                <div class="d-flex align-items-center justify-content-between mt-1">
+                                    <h6 class="font-weight-bold my-2">{{each_review.class_attended}}</h6>
+                                    <h6 class="font-weight-bold my-2">{{each_review.user_attendee}}</h6>
+                                    <h6 class="font-weight-bold my-2">{{each_review.date_posted}}</h6>
+                                </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
