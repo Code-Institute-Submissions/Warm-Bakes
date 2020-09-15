@@ -2,7 +2,6 @@ from django.test import TestCase
 from .models import Customer
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User
-from django.contrib import auth
 from django.test import Client
 # Create your tests here.
 class TestCustomerViews(TestCase):
