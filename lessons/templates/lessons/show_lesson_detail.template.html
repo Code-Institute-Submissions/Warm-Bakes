@@ -17,6 +17,7 @@
                 <div alt="product-image" width="200" class="ml-lg-5 order-1 order-lg-2">{{lesson.image}}</div>
               </div>
               <a href="{%url 'create_lesson_review_route' lesson_id=lesson.id %}">POST A REVIEW</a>
+              <a href="{%url 'add_lesson_to_cart_route' lesson_id=lesson.id %}">Add To Cart</a>
         </li>
 </ul>
 {% endblock %}
