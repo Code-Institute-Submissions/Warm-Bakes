@@ -13,12 +13,13 @@
   <body>
     <div class="container">
         {% if messages %}
-          <div class='alert alert-success'>
-            {% for message in messages %}
-              <p>{{message}}</p>
-            {% endfor %}
+        {% for message in messages %}
+          <div class="alert {{message.tags}}">
+            <p>{{message}}</p>
           </div>
+        {% endfor %}
         {% endif %}
+        <a href="{% url 'view_cart_route' %}">Shopping Cart ({{number_of_items}})</a>
         {% block content %}
         {% endblock %}
     </div>
