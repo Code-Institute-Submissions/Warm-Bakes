@@ -34,4 +34,6 @@
     </div>
 </div>
 {% endfor %}
+Grand Total: $ {{total}}
+<a href="{% url 'checkout_route' %}" class="btn btn-primary">Checkout</a>
 {% endblock %}

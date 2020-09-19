@@ -48,9 +48,19 @@ def view_cart(request):
     #Retrieve the cart
     lesson_cart = request.session.get('lesson_shopping_cart',{})
     product_cart = request.session.get('product_shopping_cart',{})
+    total = 0
+    for key, item in lesson_cart.items():
+        cost_lesson_string = float(item['cost'].strip('$'))
+        total += float(cost_lesson_string)
+    
+    for key, item in product_cart.items():
+        cost_product_string = float(item['cost'].strip('$'))
+        total += float(cost_product_string * int(item['qty']))
+
     return render(request,'cart/view_cart.template.html',{
         'lesson_shopping_cart':lesson_cart,
-        'product_shopping_cart':product_cart
+        'product_shopping_cart':product_cart,
+        'total':f"{total:.2f}"
     })
 
 def remove_lesson_from_cart(request,lesson_id):
