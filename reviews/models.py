@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from products.models import Product
 from lessons.models import Lesson
+from django.utils.html import format_html
 # Create your models here.
 
 class Lesson_Review(models.Model):
@@ -20,7 +21,7 @@ class Lesson_Review(models.Model):
     date_posted = models.DateTimeField(blank=False,auto_now=True)
 
     def __str__(self):
-        return self.user_attendee.username  + " " + self.date_posted
+        return format_html('User: %s<br /> Title: %s<br/>' % (self.user_attendee.username,self.title))
 
 class Product_Review(models.Model):
     RATING_CHOICES= (
@@ -38,4 +39,4 @@ class Product_Review(models.Model):
     date_posted = models.DateTimeField(blank=False,auto_now=True)
 
     def __str__(self):
-        return self.buyer.username + " " + self.date_posted
+        return format_html('User: %s<br /> Title: %s<br/>' % (self.buyer.username,self.title))

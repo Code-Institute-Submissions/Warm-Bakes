@@ -10,8 +10,8 @@ from django.contrib import messages
 # Create your views here.
 @login_required
 def user_reviews(request):
-    product_reviews = Product_Review.objects.all()
-    lesson_reviews = Lesson_Review.objects.all()
+    product_reviews = Product_Review.objects.filter(buyer=request.user)
+    lesson_reviews = Lesson_Review.objects.filter(user_attendee=request.user)
     return render(request,'reviews/view_all_reviews.template.html',{
         'product_reviews':product_reviews,
         'lesson_reviews':lesson_reviews
