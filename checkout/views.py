@@ -94,8 +94,8 @@ def checkout(request):
             "all_product_ids": json.dumps(all_product_ids,cls=UUIDEncoder),
         },
         mode="payment",
-        success_url ='https://3c844354cdb3.ngrok.io' + reverse('checkout_success_route'),
-        cancel_url = 'https://3c844354cdb3.ngrok.io'+ reverse('checkout_cancelled_route')
+        success_url =domain + reverse('checkout_success_route'),
+        cancel_url = domain+ reverse('checkout_cancelled_route')
     )
     return render(request,"checkout/checkout.template.html",{
         "session_id":session.id,
