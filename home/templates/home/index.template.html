@@ -1,3 +1,144 @@
 {% extends 'base.template.html' %}
-{% block content %}
+{% load static %}
+{% block content %} 
+<section id="hero-homepage">
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container" id="navbar-container"><a href="{%url 'homepage' %}" class="navbar-brand text-uppercase font-weight-bold">WARM BAKES</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+            
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'show_all_products_route'%}">Products<span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'show_all_lessons_route'%}">Lessons</a>
+                      </li>
+                      {% if user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'profile_page_route' %}">My Profile</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'view_all_reviews_route' %}">My Reviews</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'view_my_purchases_route' %}">My Purchases</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_logout' %}">Logout</a>
+                      </li>
+                      {% endif %}
+                      {% if not user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_login'%}">Login</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_signup'%}">Register</a>
+                      </li>
+                      {% endif %}
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{% url 'view_cart_route' %}"><i class="fa fa-shopping-cart 3x mr-2" aria-hidden="true"></i><span>{{number_of_items}}</span></a>
+                      </li>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="pt-5 ">
+            <div class="hero-text ">
+                <div id="hero-title">
+                    <h1 class="text-white font-weight-bold mb-3 mt-5 display-1"><strong>
+                        Made by the mother</br> 
+                        Run by the family
+                    </strong></h1>
+                </div>
+                <div id="hero-subtitle">
+                    <p> Made with love,dedication and full of passion.</br>
+                        Taste the delicious treats made by a home baker today!
+                    </p>
+                </div>
+                <button  class="btn btn-warning rounded-pill btn-lg" id="hero-btn">Shop Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="page-footer font-large bg-dark text-white pt-4">
+
+    <!-- Footer Links -->
+    <div class="container text-center text-md-left">
+  
+      <!-- Grid row -->
+      <div class="row">
+  
+        <!-- Grid column -->
+        <div class="col-md-6 mx-auto">
+  
+          <!-- Content -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4">About Us</h5>
+          <p>Warm Bakes is a family business ran locally in Singapore.</br>
+             Having the priviledge to taste our mother's treats, we decided
+             as a family it would be a huge waste to not share it with others. As such,
+             Warm Bakes was founded with the intend to spread our mother's delightful delicacies
+             to everyone.
+          </p>
+  
+        </div>
+
+        <div class="col-md-6 mx-auto ">
+  
+          <!-- Links -->
+          <h5 class="font-weight-bold text-uppercase mt-3 mb-4 text-center"> Quick Links</h5>
+  
+          <ul class="list-unstyled" id="quick-links-list">
+            <li>
+              <a  class="remove-decoration" href="{%url 'show_all_products_route'%}"> View All Products</a>
+            </li>
+            <li>
+              <a class="remove-decoration"  href="{%url 'show_all_lessons_route'%}">View All Lessons</a>
+            </li>
+            {% if not user.is_authenticated %}
+            <li>
+                <a  class="remove-decoration" href="{%url 'account_login'%}">Login</a>
+            </li>
+            <li>
+                <a  class="remove-decoration" href="{%url 'account_signup'%}">Register</a>
+            </li>
+            {% endif %}
+          </ul>
+  
+        </div>
+      </div>
+    </div>
+    <hr>
+  
+    <!-- Social buttons -->
+    <ul class="list-unstyled list-inline text-center">
+      <li class="list-inline-item" >
+        <a id="social-media-links" href="https://www.facebook.com" class="fa fa-facebook"></a>
+      </li>
+      <li class="list-inline-item">
+        <a  id="social-media-links" href="https://www.twitter.com" class="fa fa-twitter"></a>
+      </li>
+      <li class="list-inline-item">
+        <a  id="social-media-links" href="https://www.google.com" class="fa fa-google-plus"></a>
+      </li>
+      <li class="list-inline-item">
+        <a  id="social-media-links" href="https://www.linkedin.com" class="fa fa-linkedin"></a>
+      </li>
+    </ul>
+    <!-- Social buttons -->
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3" id="copyright-area">© 2020 Copyright:
+      <a class="remove-decoration" href="{%url 'homepage' %}" > Warm Bakes </a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
 {% endblock %}
+
+
+
