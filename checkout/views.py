@@ -24,6 +24,7 @@ class UUIDEncoder(json.JSONEncoder):
             return obj.hex
         return json.JSONEncoder.default(self,obj)
 
+@login_required
 def checkout(request):
     #Get the secret key from settings.py
     stripe.api_key=settings.STRIPE_SECRET_KEY
