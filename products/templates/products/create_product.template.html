@@ -3,22 +3,35 @@
 {% load cloudinary %}
 {% load static %}
 
+
 {%block content %}
-<h1>Add Product</h1>
-    <form method="POST" enctype="multipart/form-data" id="form">
-    {%csrf_token%}
-    {{form|crispy}}
-	  <input type="submit"/>
-    </form>
-
-	<div class="status">
-		<h2>Status</h2>
-		<span class="status_value">Idle</span>
-	</div>
-
-	<div class="uploaded_info_holder">
-
-	</div>
+<div id="listing-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-listing my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">CREATE PRODUCT</h5>
+                        <form method="POST" enctype="multipart/form-data" id="form">
+                            {%csrf_token%}
+                            {{form|crispy}}
+                              <input type="submit"/>
+                        </form>
+                        <a class="small" href="{% url 'product_inventory_route' %}" style="color:inherit;">Cancel</a></div>
+                        <div class="status">
+                            <h2>Status</h2>
+                            <span class="status_value">Idle</span>
+                        </div>
+                    
+                        <div class="uploaded_info_holder">
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {%endblock%}
 {% block js %}
 {% cloudinary_includes %}

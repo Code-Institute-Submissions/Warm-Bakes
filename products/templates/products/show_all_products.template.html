@@ -95,10 +95,12 @@
           <!-- FIRST EXAMPLE ===================================-->
           <div class="row py-5">
             {% for product in products %}
-            {% cloudinary product.cover %}
+  
             <div class="col-lg-4">
               <figure class="rounded p-3 bg-white shadow-sm" onclick="window.location.href='{% url 'show_product_detail_route' product_id=product.id %}'">
-                <img src="{% cloudinary product.cpver %}" alt="product-image" class="w-100 card-img-top">
+                <div class="w-100 card-img-top">
+                  {% cloudinary product.cover class="product-image"%}
+                </div>
                 <figcaption class="p-4 card-img-bottom">
                   <h2 class="h5 font-weight-bold mb-2 font-italic">{{product.name}}</h2>
                   <p class="mb-0 text-small text-muted font-italic">{{product.description}}</p>

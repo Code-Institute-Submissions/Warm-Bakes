@@ -1,11 +1,23 @@
 {% extends  'base.template.html' %}
 
 {% block content %}
-    <h1>Delete Product {{product.title}}</h1>
-    <p>Are You Sure?</p>
-    <form method="POST">
-        {% csrf_token %}
-        <input type="submit" value="Yes"/>
-        <a href="{% url 'product_inventory_route' %}">Cancel</a>
-    </form>
+<div id="listing-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-listing my-5">
+                    <div class="card-body">
+                        <h1>Delete Product {{product.title}}</h1>
+                        <p>Are You Sure?</p>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="submit" value="Yes"/>
+                            <a href="{% url 'product_inventory_route' %}">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

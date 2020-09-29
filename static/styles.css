@@ -249,3 +249,20 @@ html{
     font-size:17px;
     color:black;
 }
+
+.product-image{
+    width:100%;
+}
+
+#database-background-area,
+#listing-area{
+    background-image: url(../static/database-background-image.jpg);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#back-home-btn{
+    width: 15%;
+    color:white;
+}
