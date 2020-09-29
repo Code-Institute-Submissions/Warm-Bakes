@@ -21,7 +21,7 @@ class Product(models.Model):
         ('M','Medium'),
         ('L','Large')
     ),null=True,blank=True)
-    image = CloudinaryField(blank=True,null=True)
+    cover = CloudinaryField()
 
     def __str__(self):
         return self.name

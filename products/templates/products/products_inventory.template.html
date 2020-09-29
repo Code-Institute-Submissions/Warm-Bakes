@@ -1,64 +1,66 @@
 {% extends "base.template.html" %}
 {% load crispy_forms_tags %}
-
+{% load cloudinary %}
 {% block content %}
-<h1>Products Inventory Database</h1>
+<section class="py-5">
+    <h1>Products Inventory Database</h1>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6">
-            <h5>All Categories</h5>
-            <div>
-                <ul>
-                    {% for category in categories %}
-                        <li>
-                            {{category.name}} <a href="{% url 'delete_category_route' category_id=category.id %}">Delete</a>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <h5>All Categories</h5>
+                <div>
+                    <ul>
+                        {% for category in categories %}
+                            <li>
+                                {{category.name}} <a href="{% url 'delete_category_route' category_id=category.id %}">Delete</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h5>Add Category</h5>
+                <div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <input type="submit"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h5>All Products</h5>
+        <div class="row">
+            <div class="col-lg-8">
+                <ul class="list-group-shadow">
+                    {% for each_product in products %}
+                        <li class="list-group-item">
+                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                                <div class="media-body order-2 order-lg-1">
+                                  <h5 class="mt-0 font-weight-bold mb-2">{{each_product.name}}</h5>
+                                  <p class="font-weight-bold mb-0 small">{{each_product.description}}</p>
+                                  <div class="d-flex align-items-center justify-content-between mt-1">
+                                    <h6 class="font-weight-bold my-2">{{each_product.category}}</h6>
+                                    <h6 class="font-weight-bold my-2">{{each_product.price}}</h6>
+                                    <ul>
+                                        <li><a href="{% url 'update_product_route' product_id=each_product.id %}">Update</a></li>
+                                        <li><a href="{% url 'delete_product_route' product_id=each_product.id %}">Delete</a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
                         </li>
                     {% endfor %}
                 </ul>
             </div>
-        </div>
-        <div class="col-sm-6">
-            <h5>Add Category</h5>
-            <div>
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <input type="submit"/>
-                </form>
+            <div class="col-lg-4">
+    
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <h5>All Products</h5>
-    <div class="row">
-        <div class="col-lg-8">
-            <ul class="list-group-shadow">
-                {% for product in products %}
-                    <li class="list-group-item">
-                        <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                            <div class="media-body order-2 order-lg-1">
-                              <h5 class="mt-0 font-weight-bold mb-2">{{product.name}}</h5>
-                              <p class="font-weight-bold mb-0 small">{{product.description}}</p>
-                              <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6 class="font-weight-bold my-2">{{product.category}}</h6>
-                                <h6 class="font-weight-bold my-2">{{product.price}}</h6>
-                                <ul>
-                                    <li><a href="{% url 'update_product_route' product_id=product.id %}">Update</a></li>
-                                    <li><a href="{% url 'delete_product_route' product_id=product.id %}">Delete</a></li>
-                                </ul>
-                              </div>
-                            </div>
-                            <div alt="product-image" width="200" class="ml-lg-5 order-1 order-lg-2">{{product.image}}</div>
-                          </div>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="col-lg-4">
+</section>
 
-        </div>
-    </div>
-</div>
 {% endblock %}

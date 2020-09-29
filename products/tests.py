@@ -24,7 +24,7 @@ class TestProductsViews(TestCase):
             "price": 3000,
             "category":new_category,
             "description": "Great Cake!",
-            "sizes": "S"
+            "sizes":'S',
         }
         #Pass the dictionary as named parameters to a function call
         new_product = Product(**raw_data)

@@ -1,14 +1,44 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404,HttpResponse
-from .forms import CategoryForm, ProductForm
+from .forms import CategoryForm, ProductForm,SearchForm
 from .models import Product, Category
 from django.contrib import messages
+from django.db.models import Q
 # Create your views here.
 
 def show_all_products(request):
     all_products = Product.objects.all()
+    #Check for queries submitted
+    if request.GET:
+        queries = ~Q(pk__in=[])
+
+        #if a name is specified, add it to the query
+        if 'name' in request.GET and request.GET['name']:
+            name = request.GET['name']
+            queries = queries & Q(name__icontains=name)
+
+        #if a category is specified, add it to the query
+        if 'category' in request.GET and request.GET['category']:
+            category = request.GET['category']
+            queries= queries & Q(category__in=category)
+
+        if 'price' in request.GET and request.GET['price']:
+            selected = request.GET['price']
+            if selected == 'Ascending':
+                all_products = all_products.filter(queries).order_by('price')
+            else:
+                all_products = all_products.filter(queries).order_by('-price')
+
+
+        #update the existing product found
+        all_products= all_products.filter(queries)
+
+
+    search_form = SearchForm(request.GET)
     return render(request,'products/show_all_products.template.html',{
-        'products':all_products
+        'products':all_products,
+        'search_form':search_form
     })
+
 
 def products_inventory(request):
     if request.method =="POST":
