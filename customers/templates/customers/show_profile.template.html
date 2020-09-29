@@ -1,13 +1,73 @@
 {% extends 'base.template.html' %}
-
+{% load static %}
 {% block content %}
-<h1>My Profile</h1>
+<section class="profile-area">
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container" id="navbar-container"><a href="{%url 'homepage' %}" class="navbar-brand text-uppercase font-weight-bold">WARM BAKES</a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+            
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'show_all_products_route'%}">Products<span class="sr-only">(current)</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'show_all_lessons_route'%}">Lessons</a>
+                      </li>
+                      {% if user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'profile_page_route' %}">My Profile</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'view_all_reviews_route' %}">My Reviews</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'view_my_purchases_route' %}">My Purchases</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_logout' %}">Logout</a>
+                      </li>
+                      {% endif %}
+                      {% if not user.is_authenticated %}
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_login'%}">Login</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_signup'%}">Register</a>
+                      </li>
+                      {% endif %}
+                      <li class="nav-item">
+                        <a class="nav-link text-uppercase font-weight-bold" href="{% url 'view_cart_route' %}"><i class="fa fa-shopping-cart 3x mr-2" aria-hidden="true"></i><span>{{number_of_items}}</span></a>
+                      </li>
+            </div>
+        </div>
+    </nav>
 
-<h5>Details</h5>
-{{profile.user.username}}
-{{profile.user.email}}
-{{profile.contact_number}}
-{{profile.address}}
-{{profile.postal_code}}
-<a href ="{% url 'update_profile_page_route'%}">Edit Profile</a>
+    <div class="container">
+        <div class="pt-5 ">
+            <div class="profile-hero-text ">
+                <div id="profile-hero-title">
+                    <h1 class="text-white font-weight-bold mb-3 mt-5 display-1"><strong>
+                        My Profile
+                    </strong></h1>
+                </div>
+                <div id="profile-hero-subtitle">   
+                    <h4 class="mb-3 text-center" id="text-user-details"> MY DETAILS</h4>
+                    <hr></hr>
+                    <h2 class="h5 font-weight-bold mb-2 font-bold text-center"> User: {{profile.user.username}}</h2>
+                    <ul class="list-unstyled" id="list-details">
+                        <li class="mb-2 ml-5">Email:   {{profile.user.email}}</li>
+                        <li class="mb-2 ml-5">Contact Number: {{profile.contact_number}}  </li>
+                        <li class="mb-2 ml-5">Address: {{profile.address}}  </li>
+                        <li class="mb-2 ml-5">Postal Code: {{profile.postal_code}} </li>
+
+                    </ul>
+                    <a href="{% url 'update_profile_page_route'%}" class="btn btn-warning btn-block btn-lg ml-5" id="profile-button">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+</section>
 {% endblock %}
+

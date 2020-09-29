@@ -171,6 +171,15 @@
     min-height:110vh;
 }
 
+#hero-lesson-page{
+    min-height:110vh;
+    background-image:url(../static/baking-lesson-background.jpg);
+    background-position: center;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+#lesson-hero-container,
 #product-hero-container{
     display: flex;
     justify-content: center;
@@ -178,7 +187,7 @@
     flex-direction: column;
  
 }
-
+.lesson-hero-text,
 .product-hero-text{
     display: flex;
     justify-content: center;
@@ -191,21 +200,25 @@
     transform: translate(-50%,-50%);
     
 }
+#lesson-hero-title,
 #product-hero-title{
     display:flex;
     justify-content: center;
 }
 
+#lesson-hero-title h1,
 #product-hero-title h1{
     color: white !important;
     width:100%;
     text-shadow: 2px 4px 3px rgba(0,0,0,0.4);
 }
 
+#lesson-hero-subtitle,
 #product-hero-subtitle{
     width:60%;
 }
 
+#lesson-hero-subtitle p,
 #product-hero-subtitle p{
     color:white!important;
     font-family:Georgia, 'Times New Roman', Times, serif;
@@ -218,7 +231,14 @@
 html{
     scroll-behavior: smooth;
 }
-
+#lesson-button-scroll{
+    color:inherit;
+    width:40%;
+    font-family: Heveltica, sans-serif;
+    font-weight: bold;
+    font-size:17px;
+    color: white;
+}
 
 #button-scroll{
     color:inherit;
@@ -250,9 +270,15 @@ html{
     color:black;
 }
 
+
+
 .product-image{
     width:100%;
 }
+.lesson-image{
+    width:100%;
+}
+
 
 #database-background-area,
 #listing-area{
@@ -260,9 +286,59 @@ html{
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
+    height: 200vh;
 }
 
 #back-home-btn{
     width: 15%;
     color:white;
+    font-weight: bold;
 }
+
+.lesson-container{
+    flex-grow: 2;
+    display: flex;
+    justify-content: flex-start;
+    margin-right: 1em;
+    flex-direction: row;
+    align-content: flex-start;
+}
+
+.profile-area{
+    background-image:url(../static/profile-image-background.jpg);
+    background-size:cover;
+    background-position: center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    min-height: 110vh;
+
+}
+
+.profile-hero-text{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right:-50%;
+    transform: translate(-80%,-50%);
+}
+
+#profile-hero-title h1{
+    color: black !important;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.4);
+}
+
+#profile-hero-subtitle{
+    width:60%;
+}
+
+#profile-button{
+    width: 50%;
+    color:black;
+    font-weight: bold;
+}
+
+
