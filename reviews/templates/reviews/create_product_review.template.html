@@ -1,11 +1,23 @@
 {% extends 'base.template.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1>Create Product Review</h1>
-
-<form method ="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <input type="Submit"/>
-</form>
+<div id="listing-area">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-listing my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">CREATE PRODUCT REVIEW</h5>
+                        <form method="POST">
+                            {%csrf_token%}
+                            {{form|crispy}}
+                              <input class="btn btn-success btn-sm rounded-pill font-weight-bold " type="submit"/>
+                        </form>
+                        <a class="small" href="{% url 'view_all_reviews_route' %}" style="color:inherit;">Cancel</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

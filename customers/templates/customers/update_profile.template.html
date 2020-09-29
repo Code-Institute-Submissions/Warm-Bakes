@@ -10,7 +10,7 @@
                 <div class="card card-listing my-5">
                     <div class="card-body">
                         <h5 class="card-title text-center">UPDATE PROFILE</h5>
-                        <form method="POST" enctype="multipart/form-data" id="form">
+                        <form method="POST">
                             {%csrf_token%}
                             {{form|crispy}}
                               <input class="btn btn-success btn-sm rounded-pill font-weight-bold " type="submit"/>

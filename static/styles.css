@@ -178,7 +178,7 @@
     background-size:cover;
     background-repeat:no-repeat;
 }
-
+#review-hero-container,
 #lesson-hero-container,
 #product-hero-container{
     display: flex;
@@ -187,6 +187,7 @@
     flex-direction: column;
  
 }
+.review-hero-text,
 .lesson-hero-text,
 .product-hero-text{
     display: flex;
@@ -200,12 +201,14 @@
     transform: translate(-50%,-50%);
     
 }
+#review-hero-title,
 #lesson-hero-title,
 #product-hero-title{
     display:flex;
     justify-content: center;
 }
 
+#review-hero-title h1,
 #lesson-hero-title h1,
 #product-hero-title h1{
     color: white !important;
@@ -213,11 +216,13 @@
     text-shadow: 2px 4px 3px rgba(0,0,0,0.4);
 }
 
+#review-hero-subtitle,
 #lesson-hero-subtitle,
 #product-hero-subtitle{
     width:60%;
 }
 
+#review-hero-subtitle p,
 #lesson-hero-subtitle p,
 #product-hero-subtitle p{
     color:white!important;
@@ -234,6 +239,14 @@ html{
 #lesson-button-scroll{
     color:inherit;
     width:40%;
+    font-family: Heveltica, sans-serif;
+    font-weight: bold;
+    font-size:17px;
+    color: white;
+}
+#review-button-scroll{
+    color:inherit;
+    width:60%;
     font-family: Heveltica, sans-serif;
     font-weight: bold;
     font-size:17px;
@@ -306,7 +319,6 @@ html{
 
 .profile-area{
     background-image:url(../static/profile-image-background.jpg);
-    background-size:cover;
     background-position: center;
     background-size:cover;
     background-repeat:no-repeat;
@@ -341,4 +353,28 @@ html{
     font-weight: bold;
 }
 
+#reviews-page{
+    min-height: 110vh;
+    background-image:url(../static/reviews-page-background.jpg);
+    background-position: center;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+#purchase-page{
+    min-height: 110vh;
+    background-image:url(../static/purchases-background-image.jpg);
+    background-position: center;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
+#all-review-area{
+    display: flex;
+    flex-direction: column;
+}
+#different-reviews-section{
+    display: flex;
+    flex-direction: row !important;
+}
 
