@@ -15,7 +15,7 @@
                         <form method="POST" enctype="multipart/form-data" id="form">
                             {%csrf_token%}
                             {{form|crispy}}
-                              <input type="submit"/>
+                              <input class="btn btn-success btn-sm rounded-pill font-weight-bold " type="submit"/>
                         </form>
                         <a class="small" href="{% url 'product_inventory_route' %}" style="color:inherit;">Cancel</a></div>
                         <div class="status">

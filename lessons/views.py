@@ -1,12 +1,42 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404
 from .models import Difficulty,Lesson
-from .forms import DifficultyForm, LessonForm
+from .forms import DifficultyForm, LessonForm,SearchForm
 from django.contrib import messages
+from django.db.models import Q
 
 def show_all_classes(request):
     all_lessons = Lesson.objects.all()
+
+    #Check for queries submitted
+    if request.GET:
+        queries = ~Q(pk__in=[])
+
+        #if a name is specified, add it to the query
+        if 'name' in request.GET and request.GET['name']:
+            name = request.GET['name']
+            queries = queries & Q(name__icontains=name)
+
+        #if a difficulty is specified, add it to the query
+        if 'difficulty' in request.GET and request.GET['difficulty']:
+            difficulty = request.GET['difficulty']
+            queries= queries & Q(difficulty_level__in=difficulty)
+
+        if 'price' in request.GET and request.GET['price']:
+            selected = request.GET['price']
+            if selected == 'Ascending':
+                all_lessons = all_lessons.filter(queries).order_by('price')
+            else:
+                all_lessons = all_lessons.filter(queries).order_by('-price')
+
+
+        #update the existing product found
+        all_lessons= all_lessons.filter(queries)
+
+
+    search_form = SearchForm(request.GET)
     return render(request,'lessons/show_all_classes.template.html',{
-        'lessons':all_lessons
+        'lessons':all_lessons,
+        'search_form':search_form,
     })
 
 def lessons_database(request):
