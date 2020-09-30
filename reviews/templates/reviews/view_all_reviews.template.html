@@ -79,17 +79,17 @@
                 <div class="card-body p-5">
                     <h2 class="h4 mb-1">Product Reviews</h2>
                 </div>
-                <ul class="list-group-shadow">
+                <ul class="list-group-shadow p-0 m-0">
                     {% for each_review in product_reviews %}
                         <li class="list-group-item">
-                            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                            <div class="media align-items-lg-center flex-column flex-lg-row p-3 mr-lg-5">
                                 <div class="media-body order-2 order-lg-1">
-                                <h5 class="mt-0 font-weight-bold mb-2">{{each_review.content}}</h5>
-                                <p class="font-weight-bold mb-0 small">{{each_review.ratings}}</p>
-                                <div class="d-flex align-items-center justify-content-between mt-1">
-                                    <h6 class="font-weight-bold my-2">{{each_review.buyer}}</h6>
-                                    <h6 class="font-weight-bold my-2">{{each_review.date_posted}}</h6>
-                                    <h6 class="font-weight-bold my-2">{{each_review.product_bought}}</h6>
+                                  <h4 class="mt-0 font-weight-bold mb-2">Title: {{each_review.title}}</h4>
+                                  <p class="mt-0 font-weight-bold mb-2">{{each_review.content}}</p>
+                                <div class="d-flex align-items-center justify-content-between flex-column mt-1">
+                                  <h5 class="font-weight-bold mb-0 my-2 ">Ratings: {{each_review.ratings}}/5</h5>
+                                    <h5 class="font-weight-bold my-2">Date Posted: {{each_review.date_posted}}</h5>
+                                    <h5 class="font-weight-bold my-2">Product Reviewed: {{each_review.product_bought}}</h5>
                                 </div>
                                 </div>
                             </div>
@@ -109,17 +109,16 @@
                   <div class="card-body p-5">
                       <h2 class="h4 mb-1">Lesson Reviews</h2>
                   </div>
-                  <ul class="list-group-shadow">
+                  <ul class="list-group-shadow p-0 m-0">
                     {% for each_review in lesson_reviews %}
                         <li class="list-group-item">
                             <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                                 <div class="media-body order-2 order-lg-1">
+                                <h4 class="font-weight-bold my-2">Lesson: {{each_review.class_attended}}</h4>
                                 <h5 class="mt-0 font-weight-bold mb-2">{{each_review.content}}</h5>
-                                <p class="font-weight-bold mb-0 small">{{each_review.ratings}}</p>
-                                <div class="d-flex align-items-center justify-content-between mt-1">
-                                    <h6 class="font-weight-bold my-2">{{each_review.class_attended}}</h6>
-                                    <h6 class="font-weight-bold my-2">{{each_review.user_attendee}}</h6>
-                                    <h6 class="font-weight-bold my-2">{{each_review.date_posted}}</h6>
+                                <div class="d-flex align-items-center justify-content-between flex-column mt-1">
+                                  <h6 class="font-weight-bold mb-0 ">Ratings: {{each_review.ratings}}/5</h6>
+                                    <h6 class="font-weight-bold my-2">Date: {{each_review.date_posted}}</h6>
                                 </div>
                                 </div>
                             </div>

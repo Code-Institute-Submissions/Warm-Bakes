@@ -94,24 +94,25 @@
         <div class="col-lg-11 mx-auto py-5">
           <!-- FIRST EXAMPLE ===================================-->
           <div class="row py-5">
-            {% for product in products %}
-  
-            <div class="col-lg-4">
-              <figure class="rounded p-3 bg-white shadow-sm" onclick="window.location.href='{% url 'show_product_detail_route' product_id=product.id %}'">
-                <div class="w-100 card-img-top">
-                  {% cloudinary product.cover class="product-image"%}
-                </div>
-                <figcaption class="p-4 card-img-bottom">
-                  <h2 class="h5 font-weight-bold mb-2 font-italic">{{product.name}}</h2>
-                  <p class="mb-0 text-small text-muted font-italic">{{product.description}}</p>
-                  <div class="other-details">
-                    <h5 class="mb-0 text-small">Price: ${{ product.price|convert_money }}</h5>
-                  <h5 class="mb-0 text-small">Category: {{product.category}}</h5>
+            <div class="card-deck">
+              {% for product in products %}
+              <div class="col-lg-4">
+                <figure class="rounded p-3 bg-white shadow-sm" onclick="window.location.href='{% url 'show_product_detail_route' product_id=product.id %}'">
+                  <div class="w-100 card-img-top">
+                    {% cloudinary product.cover class="product-image"%}
                   </div>
-                </figcaption>
-              </figure>
+                  <figcaption class="p-4 card-img-bottom">
+                    <h2 class="h5 font-weight-bold mb-2 font-italic">{{product.name}}</h2>
+                    <p class="mb-0 text-small text-muted font-italic">{{product.description}}</p>
+                    <div class="other-details">
+                      <h5 class="mb-0 text-small">Price: ${{ product.price|convert_money }}</h5>
+                    <h5 class="mb-0 text-small">Category: {{product.category}}</h5>
+                    </div>
+                  </figcaption>
+                </figure>
+              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
     </div>
   </div>
 </section>

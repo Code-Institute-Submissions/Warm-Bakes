@@ -1,23 +1,93 @@
 {% extends 'base.template.html' %}
-
+{% load cloudinary %}
+{% load static %}
+{% load convert_money %}
 {% block content %}
-<h1>Lesson Details</h1>
-
-<ul class="list-group-shadow">
-        <li class="list-group-item">
-            <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                <div class="media-body order-2 order-lg-1">
-                  <h5 class="mt-0 font-weight-bold mb-2">{{lesson.name}}</h5>
-                  <p class="font-weight-bold mb-0 small">{{lesson.description}}</p>
-                  <div class="d-flex align-items-center justify-content-between mt-1">
-                    <h6 class="font-weight-bold my-2">{{lesson.category}}</h6>
-                    <h6 class="font-weight-bold my-2">{{lesson.price}}</h6>
+<section id="hero-product-details-page">
+  <nav class="navbar navbar-expand-lg fixed-top py-3">
+      <div class="container" id="navbar-container"><a href="{%url 'homepage' %}" class="navbar-brand text-uppercase font-weight-bold">WARM BAKES</a>
+          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+          
+          <div id="navbarSupportedContent" class="collapse navbar-collapse">
+              <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{%url 'show_all_products_route'%}">Products<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{%url 'show_all_lessons_route'%}">Lessons</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{%url 'profile_page_route' %}">My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{%url 'view_all_reviews_route' %}">My Reviews</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{%url 'view_my_purchases_route' %}">My Purchases</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_logout' %}">Logout</a>
+                    </li>
+                    {% endif %}
+                    {% if not user.is_authenticated %}
+                    <li class="nav-item">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_login'%}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{%url 'account_signup'%}">Register</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                      <a class="nav-link text-uppercase font-weight-bold" href="{% url 'view_cart_route' %}"><i class="fa fa-shopping-cart 3x mr-2" aria-hidden="true"></i><span>{{number_of_items}}</span></a>
+                    </li>
+          </div>
+      </div>
+  </nav>
+  <div class="container" id="product-hero-container">
+    <div class="pt-5 mt-lg-5">
+        <div class="product-detail-hero-text ">
+          <ul class="list-group-shadow">
+            <li class="list-group-item">
+                <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                    <div class="media-body order-2 order-lg-1">
+                      <h5 class="mt-0 font-weight-bold mb-2">{{lesson.name}}</h5>
+                      <p class="font-weight-bold mb-0 small">{{lesson.description}}</p>
+                      <div class="d-flex  justify-content-between flex-column mt-1">
+                        <h6 class="font-weight-bold my-2">Difficulty: {{lesson.difficulty_level}}</h6>
+                        <h6 class="font-weight-bold my-2">Price: ${{lesson.price|convert_money}}</h6>
+                      </div>
+                    </div>
+                    <div alt="product-image" width="200" class="ml-lg-5 order-1 order-lg-2">{% cloudinary lesson.image %}</div>
                   </div>
+                  <div class="d-flex flex-column">
+                    <a href="{%url 'create_lesson_review_route' lesson_id=lesson.id %}" class="btn btn-warning btn-sm rounded-pill mb-2 text-white font-weight-bold" style="color:inherit;width:30%;">Post A Review</a>
+                    <a href="{%url 'add_lesson_to_cart_route' lesson_id=lesson.id %}" class="btn btn-success btn-sm rounded-pill text-white font-weight-bold" style="color:inherit;width:30%;">Add To Cart</a>
+                  </div>
+            </li>
+           </ul>
+          <h1 class="text-white font-weight-bold">All Reviews</h1>
+          {% for each_review in reviews %}
+          <li class="list-group-item">
+            <div class="media align-items-lg-center flex-column flex-lg-row p-3 ">
+                <div class="media-body order-2 order-lg-1">
+                  <h5 class="mt-0 font-weight-bold mb-2">Title: {{each_review.title}}</h5>
+                <h5 class="mt-0 font-weight-bold mb-2">{{each_review.content}}</h5>
+                <h5 class="font-weight-bold mb-0 ">Ratings: {{each_review.ratings}}</h5>
+                <div class="d-flex  flex-column mt-1">
+                    <h6 class="font-weight-bold my-2">User: {{each_review.buyer}}</h6>
+                    <h6 class="font-weight-bold my-2">Date Posted: {{each_review.date_posted}}</h6>
                 </div>
-                <div alt="product-image" width="200" class="ml-lg-5 order-1 order-lg-2">{{lesson.image}}</div>
-              </div>
-              <a href="{%url 'create_lesson_review_route' lesson_id=lesson.id %}">POST A REVIEW</a>
-              <a href="{%url 'add_lesson_to_cart_route' lesson_id=lesson.id %}">Add To Cart</a>
-        </li>
-</ul>
+                </div>
+            </div>
+          </li>
+          {% endfor %}
+        </div>
+    </div>
+</div>
+</section>
 {% endblock %}
+
+
+
+

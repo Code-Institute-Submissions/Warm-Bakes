@@ -54,12 +54,12 @@
                 <div id="profile-hero-subtitle">   
                     <h4 class="mb-3 text-center" id="text-user-details"> MY DETAILS</h4>
                     <hr></hr>
-                    <h2 class="h5 font-weight-bold mb-2 font-bold text-center"> User: {{profile.user.username}}</h2>
+                    <h2 class="h5  mb-2 text-center"> <b>User:</b> {{profile.user.username}}</h2>
                     <ul class="list-unstyled" id="list-details">
-                        <li class="mb-2 ml-5">Email:   {{profile.user.email}}</li>
-                        <li class="mb-2 ml-5">Contact Number: {{profile.contact_number}}  </li>
-                        <li class="mb-2 ml-5">Address: {{profile.address}}  </li>
-                        <li class="mb-2 ml-5">Postal Code: {{profile.postal_code}} </li>
+                        <li class="mb-2 ml-5"><b>Email:</b>   {{profile.user.email}}</li>
+                        <li class="mb-2 ml-5"><b>Contact Number:</b> {{profile.contact_number}}  </li>
+                        <li class="mb-2 ml-5"><b>Address:</b> {{profile.address}}  </li>
+                        <li class="mb-2 ml-5"><b>Postal Code:</b> {{profile.postal_code}} </li>
 
                     </ul>
                     <a href="{% url 'update_profile_page_route'%}" class="btn btn-warning btn-block btn-lg ml-5" id="profile-button">Edit Profile</a>
