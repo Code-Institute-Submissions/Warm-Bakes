@@ -8,6 +8,7 @@ class Customer(models.Model):
     contact_number = PhoneNumberField(null=False,blank=True,unique=True)
     address = models.CharField(max_length=100,null=True,blank=False)
     postal_code = models.PositiveIntegerField(unique=True,blank=False)
+    
     def __str__(self):
         return self.user.username
 

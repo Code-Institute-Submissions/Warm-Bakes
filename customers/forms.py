@@ -3,13 +3,13 @@ from allauth.account.forms import SignupForm
 from phonenumber_field.formfields import PhoneNumberField
 from .models import Customer
 
-class CustomizedSignUpForm(SignupForm):
+class CustomizedSignupForm(SignupForm):
     contact_number =PhoneNumberField(required=True)
     address = forms.CharField(max_length=100,required=True)
     postal_code = forms.IntegerField(required=True)
 
     def save(self,request):
-        user = super(CustomizedSignUpForm,self).save(request)
+        user = super(CustomizedSignupForm,self).save(request)
 
         customer = Customer()
         customer.contact_number = self.cleaned_data['contact_number']

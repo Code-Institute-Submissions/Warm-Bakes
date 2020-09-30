@@ -111,7 +111,9 @@ ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 
 # Set up customized sign up form
-ACCOUNT_FORMS = {'signup':'customers.forms.CustomizedSignUpForm'}
+ACCOUNT_FORMS = {
+    'signup':'customers.forms.CustomizedSignupForm'
+}
 # Determines the URL to the login page
 LOGIN_URL = '/accounts/login/'
 # Controls the page where Django will redirect to upon successful login
