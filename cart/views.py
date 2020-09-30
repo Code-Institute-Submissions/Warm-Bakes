@@ -73,7 +73,7 @@ def remove_lesson_from_cart(request,lesson_id):
         # save back to the session
         request.session['lesson_shopping_cart'] = cart
         messages.success(request,"Lesson has been removed from the cart successfully!")
-        return redirect(reverse('show_lesson_details_route',args=(lesson_id,)))
+        return redirect(reverse('view_cart_route'))
 
 def remove_product_from_cart(request,product_id):
     # retrieve the cart from the session
@@ -85,7 +85,7 @@ def remove_product_from_cart(request,product_id):
         #save back to the session
         request.session['product_shopping_cart'] = cart
         messages.success(request,"Product has been removed from the cart successfully!")
-        return redirect(reverse('show_product_detail_route',kwargs={'product_id':product_id}))
+        return redirect(reverse('view_cart_route'))
         
 
 def update_quantity_for_product(request,product_id):

@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404
 from .models import Difficulty,Lesson
 from .forms import DifficultyForm, LessonForm,SearchForm
+from reviews.models import Lesson_Review
 from django.contrib import messages
 from django.db.models import Q
 
@@ -122,6 +123,8 @@ def delete_lesson(request,lesson_id):
 
 def show_lesson_detail(request,lesson_id):
     lesson_being_viewed = get_object_or_404(Lesson,pk=lesson_id)
+    reviews = Lesson_Review.objects.filter(class_attended=lesson_id)
     return render(request,'lessons/show_lesson_detail.template.html',{
-        'lesson': lesson_being_viewed
+        'lesson': lesson_being_viewed,
+        'reviews':reviews
     })

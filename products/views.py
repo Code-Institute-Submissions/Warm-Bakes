@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,reverse,get_object_or_404,HttpResponse
 from .forms import CategoryForm, ProductForm,SearchForm
 from .models import Product, Category
+from reviews.models import Product_Review
 from django.contrib import messages
 from django.db.models import Q
 # Create your views here.
@@ -119,6 +120,9 @@ def delete_product(request,product_id):
 
 def show_product_detail(request, product_id):
     product_being_viewed = get_object_or_404(Product,pk=product_id)
+    reviews = Product_Review.objects.filter(product_bought=product_id)
+
     return render(request,'products/show_product_detail.template.html',{
-        'product': product_being_viewed
+        'product': product_being_viewed,
+        'reviews': reviews,
     })
