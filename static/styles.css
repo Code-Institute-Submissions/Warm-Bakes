@@ -178,6 +178,7 @@
     background-size:cover;
     background-repeat:no-repeat;
 }
+#cart-hero-container
 #review-hero-container,
 #lesson-hero-container,
 #product-hero-container{
@@ -187,6 +188,7 @@
     flex-direction: column;
  
 }
+.cart-hero-text,
 .review-hero-text,
 .lesson-hero-text,
 .product-hero-text{
@@ -201,6 +203,7 @@
     transform: translate(-50%,-50%);
     
 }
+#cart-hero-title,
 #review-hero-title,
 #lesson-hero-title,
 #product-hero-title{
@@ -208,6 +211,7 @@
     justify-content: center;
 }
 
+#cart-hero-title h1,
 #review-hero-title h1,
 #lesson-hero-title h1,
 #product-hero-title h1{
@@ -299,7 +303,15 @@ html{
     background-size:cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 200vh;
+    height: 400vh;
+}
+
+#hero-product-details-page{
+    background-image: url(../static/database-background-image.jpg);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 150vh;
 }
 
 #back-home-btn{
@@ -369,6 +381,14 @@ html{
     background-repeat:no-repeat;
 }
 
+#cart-page{
+    min-height: 110vh;
+    background-image:url(../static/cart-background-image.jpg);
+    background-position: center;
+    background-size:cover;
+    background-repeat:no-repeat;
+}
+
 #all-review-area{
     display: flex;
     flex-direction: column;
@@ -378,3 +398,13 @@ html{
     flex-direction: row !important;
 }
 
+#product-detail-hero-text{
+    margin-top:100px;
+
+}
+
+#product-detail{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
