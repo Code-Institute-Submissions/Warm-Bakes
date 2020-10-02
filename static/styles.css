@@ -56,16 +56,6 @@
 }
 
 
-/* Change navbar styling on small viewports */
-@media (max-width: 991.98px) {
-    .navbar {
-        background: #fff;
-    }
-
-    .navbar .navbar-brand, .navbar .nav-link {
-        color: #555;
-    }
-}
 
 #hero-homepage{
 
@@ -407,4 +397,67 @@ html{
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+
+/* Change navbar styling on small viewports */
+@media (max-width: 991.98px) {
+    .navbar {
+        background: #fff;
+    }
+
+    .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+}
+/* Media Query for small and medium mobile phone devices */
+@media only screen and (max-width:414px){
+    #cart-hero-title h1,
+    #review-hero-title h1,
+    #lesson-hero-title h1,
+    #product-hero-title h1,
+    .hero-title h1{
+       font-size: 40px;
+    }
+    #hero-subtitle p {
+        font-size: 16px;
+    }
+
+    #review-button-scroll,
+    #lesson-button-scroll,
+    #button-scroll,
+    #hero-btn{
+        width:100%;
+    }
+
+    #review-hero-subtitle p,
+    #lesson-hero-subtitle p,
+    #product-hero-subtitle p{
+        font-size:18px;
+    }
+
+    #profile-hero-title h1{
+        font-size:40px !important;
+        padding-left:130px !important;
+        padding-top:40px !important;
+    }
+
+    #profile-hero-subtitle{
+        width:100% !important;
+        padding-left:100px !important;
+    }
+    #profile-button{
+        width:100% !important;
+        font-size:14px !important;
+    }
+}
+/* Media Query for Ipad Device */
+@media only screen and (min-width:768px) and (max-width:1440px){
+    #hero-btn{
+        width:50%;
+    }
+
+    #product-hero-title h1{
+        padding-left:150px;
+    }
 }
