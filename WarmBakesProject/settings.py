@@ -118,8 +118,22 @@ ACCOUNT_FORMS = {
 LOGIN_URL = '/accounts/login/'
 # Controls the page where Django will redirect to upon successful login
 LOGIN_REDIRECT_URL = "/"
-# Simulation of django sign-up confirmation
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# email configuration
+TEST_EMAIL = os.environ.get('TEST_EMAIL')
+
+if TEST_EMAIL == "1":
+    #Use the console to see the email content
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = "smtp.gmail.com"
+    EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASS")
+    EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER")
+    
 
 
 WSGI_APPLICATION = 'WarmBakesProject.wsgi.application'
