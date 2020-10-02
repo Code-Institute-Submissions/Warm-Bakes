@@ -30,7 +30,7 @@ STRIPE_ENDPOINT_SECRET = os.environ.get("STRIPE_ENDPOINT_SECRET")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["*","warmbakes.herokuapp.com"]
 
 
 # Application definition
@@ -67,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'WarmBakesProject.urls'
@@ -133,7 +134,7 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASS")
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
     DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER")
-    
+
 
 
 WSGI_APPLICATION = 'WarmBakesProject.wsgi.application'
@@ -191,6 +192,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
 CLOUDINARY = {
     'cloud_name':os.environ.get("CLOUDINARY_CLOUD_NAME"),
