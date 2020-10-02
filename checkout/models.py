@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
+from customers.models import Customer
 from lessons.models import Lesson
 from products.models import Product
 # Create your models here.
 class Lesson_Order(models.Model):
-    customer = models.ForeignKey(User,on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     price = models.PositiveIntegerField(blank=False)
     purchase_date = models.DateTimeField(blank=False,auto_now=True)
     lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE)
@@ -17,7 +17,7 @@ class Product_Order(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     total_cost = models.PositiveIntegerField(blank=False)
     purchase_date = models.DateTimeField(blank=False,auto_now=True)
-    customer = models.ForeignKey(User,on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(blank=False,default=0)
     price = models.PositiveIntegerField(blank=False,default=0)
 
