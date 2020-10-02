@@ -4,7 +4,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 class Customer(models.Model):
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     contact_number = PhoneNumberField(null=False,blank=True,unique=True)
     address = models.CharField(max_length=100,null=True,blank=False)
     postal_code = models.PositiveIntegerField(unique=True,blank=False)
