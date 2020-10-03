@@ -1,9 +1,10 @@
-# Warm Bakes - A Home grown bakery in the midst of a crisis
+# Warm Bakes - A home grown bakery in the midst of a crisis
 ## Fourth Project : Full-Stack Development With Django
 A live demo of this project can be viewed [here](https://warmbakes.herokuapp.com/). 
 
 This project adopts a  visual-approach to appeal to all the audiences who are interested in pastry and with through the use of Django framework to help to store data to the backend and manage the multi-page application.
 
+```
 Staff User Account
 - Username: faithlol
 - Password: rotiprata123
@@ -11,6 +12,9 @@ Staff User Account
 Test Customer Account
 - Username: testuser123
 - Password: rotiprata123
+
+```
+
 
 ### Disclaimer
 Lessons and products  as seen on the website  are mainly used for the presentation of the demo.Therefore, the items seen on the website are not to be taken seriously and are not actually real.
@@ -65,6 +69,7 @@ Sequence of Navigation
 
 ### Skeleton
 Wireframes used for the project can be found [here](readme/project_4.pdf)
+
 ### Surface
 Images used in the project were related to pastry to promote a visual appeal to the audience to entice them to purchase the baker products.
 
@@ -166,15 +171,46 @@ Usage of custom filters to allow for customized functions to be loaded and used 
 ![Schema](readme/Schema-WarmBakes.png)
 
 
-
 ## Testing
 Testing was carried out both manually and with automation and the results of the testing are shown below:
 
-Automated Testing 
+### Automated Testing
+1. Cart
+- Add/Remove lessons and products from cart   
+- Update Quantity of products from cart
+- Test Routing
+2. Customer
+- Test Routing
+- Test Edit Profile of a customer
+- Test Create Customer
+3. Home
+- Test Routing
+4. Lessons
+- Test Routing
+- Add/Remove Difficulty 
+- Add/Remove/Update Lessons
+5. Products
+- Test Routing
+- Add/Remove Category
+- Add/Remove/Update Products
+6. Reviews
+- Test Routing
+- Test Create Product and Lesson Review
 
-Manual Testing
+Results:
+At the time of testing, all tests.py received no error feedback.
 
+### Manual Testing
+Automated testing was not created for checkout app so it was done manually to ensure that there are no errors.
 
+| Test Number | Event                                                           | Expected Observation                                                                   | Actual Observation |
+|-------------|-----------------------------------------------------------------|----------------------------------------------------------------------------------------|--------------------|
+| 1           | Checkout To Stripe                                              | Redirected to Stripe                                                                   | As Expected        |
+| 2           | Enter of Details and Press Make Payment at Stripe Checkout page | Usage of webhook to redirect back to webpage upon successful payment                   | As Expected        |
+| 3           | User Clicks on My Purchases                                     | User will see correct listing of purchases if the user has made the relevant purchases | As Expected        |
+
+#### Registration Email Sending
+- A temporary email account was created [here](https://temp-mail.org/en/) to receive the email for account verification and it was tested to be working as well.
 
 ### Responsiveness
 Using the inspector function of Google Chrome, the following devices was used in the testing phase for mobile responsiveness:
@@ -187,42 +223,47 @@ Using the inspector function of Google Chrome, the following devices was used in
 - iPhone 6/7/8 Plus
 - iPhone X
 - IPad
-- Ipad Pro
 
 In the testing of responsiveness to both phone and tablet devices, the webpage application is able to display and layout the correct intended design for the different
 pages when tested through these different platforms.
 
 ### Bugs
-- Downvote button of posts will cause the page to reload 
-- If users upload many images into the create listing or edit listing form, only the latest image will be taken into the database.
+- Django Admin page for Lesson_orders and Product_orders cannot be viewed
+- Automated testing could sometimes have all passes or some failures, can be inconsistent.
 
 ## Deployment
 This website is deployed on [Heroku](https://www.heroku.com). 
 
 To deploy on Heroku
-1. Download or Clone the master branch from [github](https://github.com/l0nelyhermit/Timeless)
+1. Download or Clone the master branch from [github](https://github.com/l0nelyhermit/Warm-Bakes)
 2. To list all the requirements in requirements.txt, run the following command in terminal:
 ```
 pip3 freeze --local > requirements.txt
 ```
-3. Set Debug to False
+3. Set Debug to False in settings.py of main project app.
 4. Procfile need to be created to run gunicorn upon deployment
 5. Git push to Heroku Master after all the documents are properly set up
-6. Use Your Own MongoDB account to host the database and use your own cloudinary account to host the images uploaded by users
 6. All public keys and private keys for the following need to be added to in Heroku Config Vars settings:
-    - MongoDB URI : Your Own MONGO_URI
-    - Secret Key: Choose Your Own Secret Key
-    - Upload Preset: Your Own Upload Preset
-    - Cloud Name: Your Own Cloud Name 
-
+    - Cloudinary API key
+    - Cloudinary API Secret
+    - Cloudinary Cloud Name
+    - Database URL
+    - Email Host Pass
+    - Email Host User
+    - Stripe Endpoint Secret
+    - Stripe Publishable Key
+    - Stripe Secret Key
+    - Test Email
+    - Secret Key
 ## Credits and Acknowledgement
 - Bootstrap Snippets : https://bootstrapious.com/snippets
-- Background Image For Homepage and Marketplace: https://wallpapercave.com/louis-moinet-watches-wallpapers
-- Hero Image For Welcome Users: https://www.pexels.com/photo/close-up-photo-of-wristwatch-2113994/
-- Image Used for Login Page: https://www.pexels.com/photo/men-s-white-button-up-dress-shirt-708440/
-- Background Image Used for the rest of the webpage: https://www.pexels.com/photo/round-michael-kors-chronograph-watch-2783873/
-- Favicon Image: https://favicon.io/emoji-favicons/watch/
-- Listing Watch Images: https://stockx.com
+- Footer Snippet: https://mdbootstrap.com/docs/jquery/navigation/footer/#advanced
+- Background Image For Homepage : https://www.epicurious.com/expert-advice/types-of-cake-glossary-article
+- Hero Image For Product Page: https://www.schaer.com/en-int/r/luxury-chocolate-cake
+- Hero Image for Lesson Page: https://www.independent.co.uk/extras/indybest/food-drink/online-baking-course-classes-uk-free-beginners-bread-ahead-a9522611.html
+- Favicon Image: https://favicon.io/emoji-favicons/birthday-cake/
+- Other Images:  https://www.pexels.com/ and https://unsplash.com/
+
 
 
 
