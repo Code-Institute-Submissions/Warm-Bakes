@@ -5,11 +5,11 @@ A live demo of this project can be viewed [here](https://warmbakes.herokuapp.com
 This project adopts a  visual-approach to appeal to all the audiences who are interested in pastry and with through the use of Django framework to help to store data to the backend and manage the multi-page application.
 
 ```
-Staff User Account
+Demo Staff User Account
 - Username: faithlol
 - Password: rotiprata123
 
-Test Customer Account
+Demo Test Customer Account
 - Username: testuser123
 - Password: rotiprata123
 
