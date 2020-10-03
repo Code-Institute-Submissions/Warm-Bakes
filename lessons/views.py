@@ -4,6 +4,7 @@ from .forms import DifficultyForm, LessonForm,SearchForm
 from reviews.models import Lesson_Review
 from django.contrib import messages
 from django.db.models import Q
+from django.contrib.admin.views.decorators import staff_member_required,login_required
 
 def show_all_classes(request):
     all_lessons = Lesson.objects.all()
@@ -40,9 +41,12 @@ def show_all_classes(request):
         'search_form':search_form,
     })
 
+@staff_member_required
+@login_required
 def lessons_database(request):
     if request.method =="POST":
         difficulty_form = DifficultyForm(request.POST)
+           # Validate form fields
         if difficulty_form.is_valid():
             difficulty_form.save()
             messages.success(request,
@@ -60,6 +64,8 @@ def lessons_database(request):
             'difficulties':difficulty
         })
 
+@staff_member_required
+@login_required
 def delete_difficulty(request,difficulty_id):
     difficulty_to_delete = get_object_or_404(Difficulty,pk=difficulty_id)
     difficulty_to_delete.delete()
@@ -67,7 +73,8 @@ def delete_difficulty(request,difficulty_id):
     f"Difficulty {difficulty_to_delete.name} has been deleted")
     return redirect(lessons_database)
 
-
+@staff_member_required
+@login_required
 def create_lesson(request):
     if request.method =='POST':
         lesson_form = LessonForm(request.POST)
@@ -88,12 +95,14 @@ def create_lesson(request):
             'form':lesson_form
         })
 
+@staff_member_required
+@login_required
 def update_lesson(request,lesson_id):
     lesson_to_update = get_object_or_404(Lesson,pk=lesson_id)
 
     if request.method == "POST":
         lesson_form = LessonForm(request.POST, instance=lesson_to_update)
-
+           # Validate form fields
         if lesson_form.is_valid():
             lesson_form.save()
             messages.success(request,
@@ -109,6 +118,8 @@ def update_lesson(request,lesson_id):
             'form':lesson_form
         })
 
+@staff_member_required
+@login_required
 def delete_lesson(request,lesson_id):
     lesson_to_delete = get_object_or_404(Lesson,pk=lesson_id)
     if request.method =="POST":

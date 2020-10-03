@@ -4,6 +4,7 @@ from .models import Product, Category
 from reviews.models import Product_Review
 from django.contrib import messages
 from django.db.models import Q
+from django.contrib.admin.views.decorators import staff_member_required,login_required
 # Create your views here.
 
 def show_all_products(request):
@@ -40,10 +41,12 @@ def show_all_products(request):
         'search_form':search_form
     })
 
-
+@staff_member_required
+@login_required
 def products_inventory(request):
     if request.method =="POST":
         category_form = CategoryForm(request.POST)
+        # Validate form fields
         if category_form.is_valid():
             category_form.save()
             messages.success(request,f"New Category {category_form.cleaned_data['name']} has been created")
@@ -60,12 +63,16 @@ def products_inventory(request):
             'categories': category
         })
 
+@staff_member_required
+@login_required
 def delete_category(request,category_id):
     category_to_delete = get_object_or_404(Category,pk=category_id)
     category_to_delete.delete()
     messages.success(request,f"Category {category_to_delete.name} has been deleted")
     return redirect(products_inventory)
 
+@staff_member_required
+@login_required
 def create_product(request):
     if request.method =='POST':
         product_form = ProductForm(request.POST)
@@ -85,12 +92,14 @@ def create_product(request):
             'form':product_form
         })
 
+@staff_member_required
+@login_required
 def update_product(request,product_id):
     product_to_update = get_object_or_404(Product,pk=product_id)
 
     if request.method == "POST":
         product_form = ProductForm(request.POST, instance=product_to_update)
-
+        # Validate form fields
         if product_form.is_valid():
             product_form.save()
             messages.success(request,f"Product {product_form.cleaned_data['name']} has been updated")
@@ -106,6 +115,8 @@ def update_product(request,product_id):
             'form':product_form
         })
 
+@staff_member_required
+@login_required
 def delete_product(request,product_id):
     product_to_delete = get_object_or_404(Product,pk=product_id)
     if request.method =="POST":

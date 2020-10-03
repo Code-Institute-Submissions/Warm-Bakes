@@ -18,7 +18,7 @@ def update_profile(request):
 
     if request.method == "POST":
         customer_form = CustomerProfileForm(request.POST, instance=user_to_update)
-
+           # Validate form fields
         if customer_form.is_valid():
             customer_form.save()
             messages.success(request,f"Customer profile has been updated")

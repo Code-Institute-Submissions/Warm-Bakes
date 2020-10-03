@@ -22,6 +22,7 @@ def create_product_review(request,product_id):
     product_reviewed = get_object_or_404(Product,pk=product_id)
     if request.method =='POST':
         review_form = ProductReviewForm(request.POST)
+        # Validate form fields
         if review_form.is_valid():
             review_model= review_form.save(commit=False)
             review_model.product_bought=product_reviewed
@@ -41,6 +42,7 @@ def create_lesson_review(request,lesson_id):
     lesson_reviewed=get_object_or_404(Lesson,pk=lesson_id)
     if request.method =='POST':
         review_form = LessonReviewForm(request.POST)
+        # Validate form fields
         if review_form.is_valid():
             review_model=review_form.save(commit=False)
             review_model.class_attended=lesson_reviewed
@@ -61,7 +63,7 @@ def update_product_review(request,product_review_id):
 
     if request.method == "POST":
         product_review_form = ProductReviewForm(request.POST, instance=product_to_update)
-
+        # Validate form fields
         if product_review_form.is_valid():
             product_review_form.save()
             messages.success(request,"Review has been updated successfully")
@@ -85,7 +87,7 @@ def update_lesson_review(request,lesson_id):
 
     if request.method == "POST":
         lesson_review_form = LessonReviewForm(request.POST, instance=lesson_to_update)
-
+        # Validate form fields
         if lesson_review_form.is_valid():
             lesson_review_form.save()
             messages.success(request,"Review has been updated successfully")
