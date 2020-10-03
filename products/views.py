@@ -4,7 +4,7 @@ from .models import Product, Category
 from reviews.models import Product_Review
 from django.contrib import messages
 from django.db.models import Q
-from django.contrib.admin.views.decorators import staff_member_required,login_required
+from django.contrib.admin.views.decorators import staff_member_required
 # Create your views here.
 
 def show_all_products(request):
@@ -42,7 +42,6 @@ def show_all_products(request):
     })
 
 @staff_member_required
-@login_required
 def products_inventory(request):
     if request.method =="POST":
         category_form = CategoryForm(request.POST)
@@ -64,7 +63,6 @@ def products_inventory(request):
         })
 
 @staff_member_required
-@login_required
 def delete_category(request,category_id):
     category_to_delete = get_object_or_404(Category,pk=category_id)
     category_to_delete.delete()
@@ -72,7 +70,6 @@ def delete_category(request,category_id):
     return redirect(products_inventory)
 
 @staff_member_required
-@login_required
 def create_product(request):
     if request.method =='POST':
         product_form = ProductForm(request.POST)
@@ -93,7 +90,6 @@ def create_product(request):
         })
 
 @staff_member_required
-@login_required
 def update_product(request,product_id):
     product_to_update = get_object_or_404(Product,pk=product_id)
 
@@ -116,7 +112,6 @@ def update_product(request,product_id):
         })
 
 @staff_member_required
-@login_required
 def delete_product(request,product_id):
     product_to_delete = get_object_or_404(Product,pk=product_id)
     if request.method =="POST":

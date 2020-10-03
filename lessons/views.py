@@ -4,7 +4,7 @@ from .forms import DifficultyForm, LessonForm,SearchForm
 from reviews.models import Lesson_Review
 from django.contrib import messages
 from django.db.models import Q
-from django.contrib.admin.views.decorators import staff_member_required,login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 def show_all_classes(request):
     all_lessons = Lesson.objects.all()
@@ -42,7 +42,6 @@ def show_all_classes(request):
     })
 
 @staff_member_required
-@login_required
 def lessons_database(request):
     if request.method =="POST":
         difficulty_form = DifficultyForm(request.POST)
@@ -65,7 +64,6 @@ def lessons_database(request):
         })
 
 @staff_member_required
-@login_required
 def delete_difficulty(request,difficulty_id):
     difficulty_to_delete = get_object_or_404(Difficulty,pk=difficulty_id)
     difficulty_to_delete.delete()
@@ -74,7 +72,6 @@ def delete_difficulty(request,difficulty_id):
     return redirect(lessons_database)
 
 @staff_member_required
-@login_required
 def create_lesson(request):
     if request.method =='POST':
         lesson_form = LessonForm(request.POST)
@@ -96,7 +93,6 @@ def create_lesson(request):
         })
 
 @staff_member_required
-@login_required
 def update_lesson(request,lesson_id):
     lesson_to_update = get_object_or_404(Lesson,pk=lesson_id)
 
@@ -119,7 +115,6 @@ def update_lesson(request,lesson_id):
         })
 
 @staff_member_required
-@login_required
 def delete_lesson(request,lesson_id):
     lesson_to_delete = get_object_or_404(Lesson,pk=lesson_id)
     if request.method =="POST":
